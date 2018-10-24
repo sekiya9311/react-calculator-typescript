@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import { calculator } from './calculator';
+import { calculatorReducer, IAppState } from './calculator';
 
-export const reducer = combineReducers({
-  calculator
+export interface IApplicationState {
+  appState: IAppState
+};
+
+export const rootReducer = combineReducers<IApplicationState>({
+  appState: calculatorReducer
 });

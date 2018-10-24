@@ -2,7 +2,7 @@ import * as React from 'react';
 
 interface INumBtnProps {
   n: number;
-  onClick: () => void;
+  onClick: (num: number) => void;
 };
 
 export class NumBtn extends React.Component<INumBtnProps, {}> {
@@ -11,9 +11,10 @@ export class NumBtn extends React.Component<INumBtnProps, {}> {
   }
   public render() {
     return (
-      <button onClick={this.props.onClick}>
+      <button onClick={this.onClick}>
         {this.props.n}
       </button>
     );
   }
+  private onClick = () => this.props.onClick(this.props.n);
 };

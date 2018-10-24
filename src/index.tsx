@@ -1,16 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 import { createStore } from 'redux';
-import { CalculatorContainer } from './containers/CalculatorContainer';
-import { reducer } from './reducers';
-import registerServiceWorker from './registerServiceWorker';
+import { rootReducer } from "./reducers";
+import registerServiceWorker from "./registerServiceWorker";
+import { Routes } from './routes';
 
-const store = createStore(reducer);
+const store = createStore(rootReducer);
+
 ReactDOM.render(
   <Provider store={store}>
-    <CalculatorContainer />
+    <Routes />
   </Provider>,
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 registerServiceWorker();

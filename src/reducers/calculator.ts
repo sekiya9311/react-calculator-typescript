@@ -1,4 +1,4 @@
-import { CalculatorActions, IOnNumClickAction, IOnPlusClickAction } from '../actions';
+import { AnyAction, Reducer } from "redux";
 import { ActionTypes } from '../utils/actionTypes';
 
 export interface IAppState {
@@ -14,7 +14,7 @@ const InitialAppState: IAppState = {
 };
 
 // arguments: 「{now state, action detail}」, return value: 「next state」
-export const calculator = (state: IAppState = InitialAppState, action: CalculatorActions): IAppState => {
+const calculator: Reducer<IAppState> = (state: IAppState = InitialAppState, action): IAppState => {
   switch (action.type) {
     case ActionTypes.INPUT_NUMBER:
       return inputNumberFunc(state, action);
@@ -25,14 +25,14 @@ export const calculator = (state: IAppState = InitialAppState, action: Calculato
   }
 };
 
-const inputNumberFunc = (state: IAppState, action: IOnNumClickAction): IAppState => {
+const inputNumberFunc = (state: IAppState, action: AnyAction): IAppState => {
   return {
     ...state,
     inputValue: state.inputValue * 10 + action.payload.num,
     showingResult: false
   };
 };
-const plusFunc = (state: IAppState, action: IOnPlusClickAction): IAppState => {
+const plusFunc = (state: IAppState, action: AnyAction): IAppState => {
   return {
     ...state,
     inputValue: 0,
@@ -40,3 +40,5 @@ const plusFunc = (state: IAppState, action: IOnPlusClickAction): IAppState => {
     showingResult: true
   };
 };
+
+export { calculator as calculatorReducer }
