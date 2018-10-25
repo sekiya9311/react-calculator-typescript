@@ -14,7 +14,7 @@ const InitialAppState: IAppState = {
 };
 
 // arguments: 「{now state, action detail}」, return value: 「next state」
-const calculator: Reducer<IAppState> = (state: IAppState = InitialAppState, action): IAppState => {
+const calculator: Reducer<IAppState> = (state: IAppState = InitialAppState, action: AnyAction): IAppState => {
   switch (action.type) {
     case ActionTypes.INPUT_NUMBER:
       return inputNumberFunc(state, action);
@@ -28,7 +28,7 @@ const calculator: Reducer<IAppState> = (state: IAppState = InitialAppState, acti
 const inputNumberFunc = (state: IAppState, action: AnyAction): IAppState => {
   return {
     ...state,
-    inputValue: state.inputValue * 10 + action.payload,
+    inputValue: state.inputValue * 10 + action.payload.num,
     showingResult: false
   };
 };
