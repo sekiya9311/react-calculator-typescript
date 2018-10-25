@@ -6,6 +6,7 @@ import { NumBtn } from '../components/NumBtn';
 import { PlusBtn } from '../components/PlusBtn';
 import { Result } from '../components/Result';
 import { IApplicationState } from '../reducers';
+import { range } from '../utils/functions';
 
 
 interface IFromDispatchProps {
@@ -21,24 +22,21 @@ type AllProps = IFromDispatchProps & ICalculatorProps;
 
 class CalculatorContainer extends React.Component<AllProps, {}> {
   public render() {
-    const elements: JSX.Element[] = [];
-    for (let i = 0; i < 3; i++) {
-      const rows: JSX.Element[] = [];
-      for (let j = 0; j < 3; j++) {
-        const val = i * 3 + j + 1;
-        rows.push(<NumBtn n={val} onClick={this.props.onNumClick} />);
-      }
-      elements.push(
-        <div>
-          {rows}
+    const elements = range(3).map((i) => {
+      return (
+        <div key={`row_${i}`}>
+          {range(3).map((j) => {
+            const val = i * 3 + j + 1;
+            return (<NumBtn n={val} onClick={this.props.onNumClick} key={val} />);
+          })}
         </div>
       );
-    }
+    });
     return (
       <div>
         {elements}
         <div>
-          <NumBtn n={0} onClick={this.props.onNumClick} />
+          <NumBtn n={0} onClick={this.props.onNumClick} key={0} />
           <PlusBtn onClick={this.props.onPlusClick} />
         </div>
         <Result result={this.props.value} />
