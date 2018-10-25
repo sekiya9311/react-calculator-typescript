@@ -48,7 +48,7 @@ class CalculatorContainer extends React.Component<AllProps, {}> {
 };
 
 const mapStateProps = ({ appState }: IApplicationState): ICalculatorProps => ({
-  value: appState.resultValue
+  value: appState.showingResult ? appState.resultValue : appState.inputValue
 });
 
 const mapDispatchProps = (dispatch: Dispatch): IFromDispatchProps => ({

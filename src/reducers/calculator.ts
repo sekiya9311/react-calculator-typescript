@@ -28,7 +28,7 @@ const calculator: Reducer<IAppState> = (state: IAppState = InitialAppState, acti
 const inputNumberFunc = (state: IAppState, action: AnyAction): IAppState => {
   return {
     ...state,
-    inputValue: state.inputValue * 10 + action.payload.num,
+    inputValue: state.inputValue * 10 + action.payload,
     showingResult: false
   };
 };
